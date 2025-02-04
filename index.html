@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สุ่มแรงค์และค่าสถานะ</title>
+</head>
+<body>
+    <h2>สุ่มแรงค์และค่าสถานะ</h2>
+    <button onclick="randomize()">สุ่มค่า</button>
+    <p id="result"></p>
+
+    <script>
+        function randomize() {
+            const ranks = ["G", "F", "E", "D", "C", "B", "A", "S", "SS", "SSS", "EX"];
+            
+            function getRandomRank() {
+                return ranks[Math.floor(Math.random() * ranks.length)];
+            }
+
+            const stats = {
+                "ความแข็งแกร่ง": getRandomRank(),
+                "ความอดทน": getRandomRank(),
+                "ค่าความฉลาด": getRandomRank(),
+                "มานา": getRandomRank(),
+                "ความคล่องแคล่ว": getRandomRank(),
+                "โชค": getRandomRank(),
+                "สเน่ห์": getRandomRank(),
+                "ป้องกันกายภาพ": getRandomRank(),
+                "ป้องกันเวทมนตร์": getRandomRank()
+            };
+
+            let output = "";
+            for (const [key, value] of Object.entries(stats)) {
+                output += `<strong>${key}:</strong> ${value}<br>`;
+            }
+
+            document.getElementById("result").innerHTML = output;
+        }
+    </script>
+</body>
+</html>
