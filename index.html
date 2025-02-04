@@ -11,13 +11,33 @@
     <p id="result"></p>
 
     <script>
-        function randomize() {
-            const ranks = ["G", "F", "E", "D", "C", "B", "A", "S", "SS", "SSS", "EX"];
-            
-            function getRandomRank() {
-                return ranks[Math.floor(Math.random() * ranks.length)];
-            }
+        function getRandomRank() {
+            const rankPool = [
+                { rank: "G", weight: 25 },
+                { rank: "F", weight: 20 },
+                { rank: "E", weight: 15 },
+                { rank: "D", weight: 10 },
+                { rank: "C", weight: 8 },
+                { rank: "B", weight: 7 },
+                { rank: "A", weight: 5 },
+                { rank: "S", weight: 4 },
+                { rank: "SS", weight: 3 },
+                { rank: "SSS", weight: 2 },
+                { rank: "EX", weight: 1 }
+            ];
 
+            let totalWeight = rankPool.reduce((sum, item) => sum + item.weight, 0);
+            let randomNum = Math.random() * totalWeight;
+
+            for (let item of rankPool) {
+                if (randomNum < item.weight) {
+                    return item.rank;
+                }
+                randomNum -= item.weight;
+            }
+        }
+
+        function randomize() {
             const stats = {
                 "ความแข็งแกร่ง": getRandomRank(),
                 "ความอดทน": getRandomRank(),
